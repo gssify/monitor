@@ -1,3 +1,3 @@
-./lib/node-v12-x32.exe ./src/index.js
+node-x32.exe index.js
 
 @cmd /k

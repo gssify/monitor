@@ -29,6 +29,9 @@ async function getUserInfo (openId) {
     )
     return result.msg[0]
   } catch (error) {
+    console.log('==============>')
+    console.log(error)
+    console.log('<==============')
     return null
   }
 }
@@ -47,8 +50,11 @@ async function getSchedule (date) {
         context: 1
       }
     )
-    return result.obj.Schedules.Schedule
+    return result.obj.RecordCount === 0 ? [] : result.obj.Schedules.Schedule
   } catch (error) {
+    console.log('==============>')
+    console.log(error)
+    console.log('<==============')
     return null
   }
 }
@@ -81,8 +87,12 @@ async function bookSchedule (user, schedule) {
         context: 1
       }
     )
-    return { success: !!result.obj.OrderContent, msg: result.obj.OrderContent }
+    const orderContent = result.obj && result.obj.OrderContent
+    return { success: !!orderContent, msg: orderContent }
   } catch (error) {
+    console.log('==============>')
+    console.log(error)
+    console.log('<==============')
     return { success: false, msg: '' }
   }
 }
